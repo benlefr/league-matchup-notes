@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "types": ["svelte"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

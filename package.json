@@ -1,0 +1,79 @@
+{
+  "name": "league-matchup-notes",
+  "version": "1.0.0",
+  "description": "Application pour gérer les matchups League of Legends",
+  "main": "main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && powershell -Command \"Copy-Item -Path 'src/image' -Destination 'dist/src/image' -Recurse -Force\"",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "package": "npm run build && electron-builder"
+  },
+  "keywords": [
+    "league of legends",
+    "matchup",
+    "notes",
+    "runes"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "concurrently": "^8.2.2",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "svelte": "^4.2.8",
+    "vite": "^5.0.10",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.6.2"
+  },
+  "build": {
+    "appId": "com.league.matchupnotes",
+    "productName": "League Matchup Notes",
+    "publish": {
+      "provider": "github",
+      "owner": "benlefr",
+      "repo": "league-matchup-notes"
+    },
+    "files": [
+      "dist/**/*",
+      "main.cjs",
+      "preload.cjs",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "src/image",
+        "to": "app/src/image",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "assets/Icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
