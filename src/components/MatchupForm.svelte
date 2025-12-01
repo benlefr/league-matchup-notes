@@ -93,6 +93,7 @@
 
   $: isJungle = formData.lane === 'Jungle';
   $: isTopLane = formData.lane === 'Top';
+  $: isADC = formData.lane === 'ADC';
   $: smiteCount = currentPath.filter(camp => camp.smite).length;
   $: canAddSmite = smiteCount < 2;
   $: pathComplete = currentPath.length >= 6;
@@ -911,6 +912,18 @@
               </span>
             </label>
           </div>
+        </div>
+      </div>
+    {/if}
+
+    <!-- ADC Section - NEW FEATURE v1.0.1 -->
+    {#if isADC && !readOnly}
+      <div class="adc-section">
+        <h3>🎯 Informations ADC</h3>
+        <div class="adc-info-box">
+          <p>✨ <strong>Nouvelle fonctionnalité!</strong></p>
+          <p>Section spéciale pour les ADC en cours de développement.</p>
+          <p>🔜 Bientôt disponible: Synergies Support, Power Spikes ADC, Gestion de lane bot</p>
         </div>
       </div>
     {/if}
@@ -1801,6 +1814,40 @@
     font-size: 18px;
     border-bottom: 1px solid rgba(100, 150, 200, 0.3);
     padding-bottom: 10px;
+  }
+
+  /* ADC Section Styles */
+  .adc-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(200, 150, 50, 0.05);
+    border: 1px solid rgba(200, 150, 50, 0.3);
+    border-radius: 8px;
+  }
+
+  .adc-section h3 {
+    color: #c8aa6e;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(200, 150, 50, 0.3);
+    padding-bottom: 10px;
+  }
+
+  .adc-info-box {
+    background: rgba(200, 170, 100, 0.1);
+    border-left: 4px solid #c8aa6e;
+    padding: 16px;
+    border-radius: 6px;
+  }
+
+  .adc-info-box p {
+    margin: 8px 0;
+    color: #c8d3e0;
+    line-height: 1.6;
+  }
+
+  .adc-info-box strong {
+    color: #c8aa6e;
   }
 </style>
 
